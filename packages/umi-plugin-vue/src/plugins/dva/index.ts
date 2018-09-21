@@ -52,7 +52,7 @@ function getModel(cwd, api) {
 
 function getPageModels(cwd, api) {
   let models = [];
-  while (!isPagesPath(cwd, api) && !isSrcPath(cwd, api)) {
+  while (!isSrcPath(cwd, api)) {
     models = models.concat(getModel(cwd, api));
     cwd = dirname(cwd);
   }
