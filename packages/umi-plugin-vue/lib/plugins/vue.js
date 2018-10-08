@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var path_1 = require("path");
 var VueLoaderPlugin = require("vue-loader/lib/plugin");
 var routerVue = "require('./router').default";
 function default_1(api) {
@@ -25,9 +24,8 @@ function default_1(api) {
         webpackConfig.plugin("vue-plugin").use(VueLoaderPlugin);
         return webpackConfig;
     });
-    api.addRuntimePlugin(path_1.join(__dirname, './runtime'));
     api.modifyEntryRender(function () {
-        return "\n    window.g_plugins.apply('rootContainer', {\n      initialValue: " + routerVue + ",\n    }).$mount('#" + mountElementId + "');";
+        return "new Vue({\n        router: " + routerVue + ",\n        render (h) {\n          return h('router-view')\n        }\n      }).$mount('#" + mountElementId + "'); ";
     });
     api.modifyEntryHistory(function () {
         return routerVue + ".history";

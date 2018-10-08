@@ -21,6 +21,7 @@
   "license": "MIT",
   "files": [
     "lib",
+    "src",
     "template"
   ],
   "keywords": [
